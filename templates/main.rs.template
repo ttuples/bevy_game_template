@@ -6,7 +6,6 @@ use bevy::prelude::*;
 use bevy::window::PrimaryWindow;
 use bevy::winit::WinitWindows;
 use bevy::DefaultPlugins;
-use bevy_game::{get_single, get_single_mut};
 use std::io::Cursor;
 use winit::window::Icon;
 
@@ -42,7 +41,10 @@ fn set_window_icon(
     windows: NonSend<WinitWindows>,
     primary_window: Query<Entity, With<PrimaryWindow>>,
 ) {
-    let primary_entity = get_single!(primary_window);
+    let primary_entity = match primary_window.single() {
+        Ok(m) => m,
+        _ => return,
+    };
     let Some(primary) = windows.get_window(primary_entity) else {
         return;
     };
