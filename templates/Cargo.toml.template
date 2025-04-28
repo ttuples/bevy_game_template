@@ -1,8 +1,8 @@
 [package]
-name = "bevy_game" # ToDo
+name = "{{project-name}}"
 version = "0.1.0"
 publish = false
-authors = ["ttuples"] # ToDo: you are the author ;)
+authors = ["{{authors}}"]
 edition = "2021"
 exclude = ["dist", "build", "assets", "credits"]
 
@@ -88,17 +88,26 @@ bevy = { version = "0.16", default-features = false, features = [
     "tonemapping_luts",
     "webgl2",
     "x11",
+    "wayland",
 ] }
 bevy_kira_audio = { version = "0.23.0", features = ["android_shared_stdcxx"] }
-bevy_asset_loader = { git = "https://github.com/NiklasEi/bevy_asset_loader.git", rev = "refs/pull/254/head" } # ToDo: Use official version once merged
+bevy_asset_loader = { version = "0.22" }
 rand = { version = "0.9" }
 webbrowser = { version = "1", features = ["hardened"] }
 
 # keep the following in sync with Bevy's dependencies
 winit = { version = "0.30", default-features = false }
 image = { version = "0.25", default-features = false }
-## This greatly improves WGPU's performance due to its heavy use of trace! calls
-log = { version = "0.4", features = ["max_level_debug", "release_max_level_warn"] }
+# Compile low-severity logs out of native builds for performance.
+log = { version = "0.4", features = [
+    "max_level_debug",
+    "release_max_level_warn",
+] }
+# Compile low-severity logs out of web builds for performance.
+tracing = { version = "0.1", features = [
+    "max_level_debug",
+    "release_max_level_warn",
+] }
 
 [build-dependencies]
 embed-resource = "1"

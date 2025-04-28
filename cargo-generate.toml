@@ -1,0 +1,11 @@
+[template]
+cargo_generate_version = "0.23"
+include = ["*.template"]
+ignore = [
+    "target",
+    "Cargo.lock",
+    "LICENSE",
+]
+
+[hooks]
+post = ["post-generate.rhai"]

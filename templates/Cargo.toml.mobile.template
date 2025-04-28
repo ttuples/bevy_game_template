@@ -9,7 +9,7 @@ name = "mobile"
 crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
-bevy_game = { path = ".." } # ToDo
+{{project-name}} = { path = ".." }
 bevy = { version = "0.16", default-features = false, features = ["android-native-activity"] }
 
 [target."cfg(target_os = \"ios\")".dependencies]
@@ -23,7 +23,7 @@ objc2-avf-audio = { version = "0.3.0", features = [
 bevy = { version = "0.16", default-features = false }
 
 [package.metadata.android]
-package = "me.nikl.bevygame"  # ToDo
+package = "me.ttuples.bevygame"  # ToDo
 apk_name = "BevyGame"  # ToDo same as GAME_OSX_APP_NAME in release workflow
 assets = "../assets"
 strip = "strip"
